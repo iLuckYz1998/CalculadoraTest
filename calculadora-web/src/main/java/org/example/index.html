@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculadora {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 320px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .botoes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .somar {
+            background: #28a745;
+        }
+
+        .subtrair {
+            background: #dc3545;
+        }
+
+        .multiplicar {
+            background: #007bff;
+        }
+
+        .dividir {
+            background: #ffc107;
+            color: black;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculadora">
+    <h2>Calculadora</h2>
+
+    <input type="number" id="numero1" placeholder="Digite o primeiro número">
+    <input type="number" id="numero2" placeholder="Digite o segundo número">
+
+    <div class="botoes">
+        <button class="somar" onclick="somar()">Somar</button>
+        <button class="subtrair" onclick="subtrair()">Subtrair</button>
+
+        <button class="multiplicar" onclick="multiplicar()">Multiplicar</button>
+        <button class="dividir" onclick="dividir()">Dividir</button>
+    </div>
+
+    <div class="resultado" id="resultado">
+        Resultado: 0
+    </div>
+</div>
+
+<script>
+
+    function obterValores() {
+        let a = parseFloat(document.getElementById("numero1").value);
+        let b = parseFloat(document.getElementById("numero2").value);
+
+        return { a, b };
+    }
+
+    function somar() {
+        let { a, b } = obterValores();
+        document.getElementById("resultado").innerText =
+            "Resultado: " + (a + b);
+    }
+
+    function subtrair() {
+        let { a, b } = obterValores();
+        document.getElementById("resultado").innerText =
+            "Resultado: " + (a - b);
+    }
+
+    function multiplicar() {
+        let { a, b } = obterValores();
+        document.getElementById("resultado").innerText =
+            "Resultado: " + (a * b);
+    }
+
+    function dividir() {
+        let { a, b } = obterValores();
+
+        if (b === 0) {
+            document.getElementById("resultado").innerText =
+                "Erro: divisão por zero";
+            return;
+        }
+
+        document.getElementById("resultado").innerText =
+            "Resultado: " + (a / b);
+    }
+
+</script>
+
+</body>
+</html>
